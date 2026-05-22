@@ -1,0 +1,20 @@
+
+> blog-demo@0.0.1 dev
+> astro dev --host 127.0.0.1 --port 4321
+
+[vite] connected.
+[2m13:55:42[22m [34m[types][39m Generated [2m2ms[22m
+[vite] connected.
+[2m13:55:42[22m [34m[content][39m Syncing content
+[2m13:55:42[22m [34m[content][39m Synced content
+[42m[1m astro [22m[49m [32mv6.3.5[39m [2mready in[22m 1836 [2mms[22m
+[2m┃[22m Local    [36mhttp://127.0.0.1:4321/[39m
+[2m13:55:42[22m [32mwatching for file changes...[39m
+[2m13:55:45[22m [34m[200][39m /blog/first-post/ [2m37ms[22m
+[2m13:55:54[22m [34m[200][39m /blog/first-post/ [2m5ms[22m
+[2m13:57:25[22m [34m[200][39m /blog/first-post/ [2m5ms[22m
+[2m13:57:26[22m [34m[200][39m /_image [2m148ms[22m
+[2m13:57:56[22m [34m[200][39m /blog/first-post/ [2m3ms[22m
+[2m14:08:48[22m [34m[200][39m /blog/first-post/ [2m5ms[22m
+[2m16:09:56[22m [34m[200][39m /blog/first-post/ [2m6ms[22m
+[2m18:03:50[22m [34m[200][39m /blog/first-post/ [2m7ms[22m
