@@ -8,7 +8,7 @@ interface Props {
 	posts: CollectionEntry<'blog'>[];
 }
 
-const { heading = 'Documentation', eyebrow = 'Strings Attached Blog', posts } = Astro.props;
+const { heading = '', eyebrow = 'Strings Attached', posts } = Astro.props;
 ---
 
 <section class="post-directory" data-post-directory>
@@ -18,11 +18,11 @@ const { heading = 'Documentation', eyebrow = 'Strings Attached Blog', posts } = 
 	</div>
 
 	<label class="search-field">
-		<span class="sr-only">Search blog or documentation posts</span>
+		<span class="sr-only">Search for posts</span>
 		<input
 			data-post-search
 			type="search"
-			placeholder="Search blog or documentation posts"
+			placeholder="Search for posts"
 			autocomplete="off"
 		/>
 	</label>
