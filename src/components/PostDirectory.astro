@@ -1,0 +1,200 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	heading?: string;
+	eyebrow?: string;
+	posts: CollectionEntry<'blog'>[];
+}
+
+const { heading = 'Documentation', eyebrow = 'Strings Attached Blog', posts } = Astro.props;
+---
+
+<section class="post-directory" data-post-directory>
+	<div class="directory-heading">
+		<p>{eyebrow}</p>
+		<h1>{heading}</h1>
+	</div>
+
+	<label class="search-field">
+		<span class="sr-only">Search blog or documentation posts</span>
+		<input
+			data-post-search
+			type="search"
+			placeholder="Search blog or documentation posts"
+			autocomplete="off"
+		/>
+	</label>
+
+	<p class="empty-state" data-empty-state hidden>No matching posts found.</p>
+
+	<ul class="post-list">
+		{
+			posts.map((post) => (
+				<li
+					data-post-card
+					data-search-text={`${post.data.title} ${post.data.description} ${post.id} ${post.body ?? ''}`.toLowerCase()}
+				>
+					<a href={`/blog/${post.id}/`}>
+						<div class="post-meta">
+							<span>Documentation</span>
+							<span aria-hidden="true">/</span>
+							<FormattedDate date={post.data.pubDate} />
+						</div>
+						<h2>{post.data.title}</h2>
+						<p>{post.data.description}</p>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</section>
+
+<script>
+	const directories = document.querySelectorAll('[data-post-directory]');
+
+	for (const directory of directories) {
+		const search = directory.querySelector('[data-post-search]');
+		const cards = Array.from(directory.querySelectorAll('[data-post-card]'));
+		const emptyState = directory.querySelector('[data-empty-state]');
+
+		if (!(search instanceof HTMLInputElement)) continue;
+
+		search.addEventListener('input', () => {
+			const query = search.value.trim().toLowerCase();
+			let visibleCount = 0;
+
+			for (const card of cards) {
+				const searchText = card.getAttribute('data-search-text') ?? '';
+				const isVisible = searchText.includes(query);
+				card.toggleAttribute('hidden', !isVisible);
+				if (isVisible) visibleCount += 1;
+			}
+
+			emptyState?.toggleAttribute('hidden', visibleCount !== 0);
+		});
+	}
+</script>
+
+<style>
+	.post-directory {
+		box-sizing: border-box;
+		position: relative;
+		left: 50%;
+		width: min(920px, calc(100vw - 2rem));
+		margin: 0;
+		padding: clamp(1.25rem, 4vw, 2.5rem);
+		background: rgba(9, 9, 9, 76%);
+		border: 1px solid rgba(var(--accent), 28%);
+		border-radius: 8px;
+		box-shadow: var(--box-shadow);
+		transform: translateX(-50%);
+		backdrop-filter: blur(5px);
+	}
+	.directory-heading {
+		margin: 0 0 1.5rem;
+		text-align: center;
+	}
+	.directory-heading p {
+		margin: 0 0 0.4rem;
+		color: rgb(var(--gray));
+		font-family: var(--font-pixel);
+		font-size: 0.75rem;
+		letter-spacing: 0;
+	}
+	.directory-heading h1 {
+		margin: 0;
+		font-size: clamp(2rem, 7vw, 3.2rem);
+	}
+	.search-field {
+		display: block;
+		margin: 0 auto 1.5rem;
+		max-width: 680px;
+	}
+	.search-field input {
+		width: 100%;
+		min-height: 48px;
+		padding: 0.75rem 1rem;
+		background: rgba(0, 0, 0, 62%);
+		border: 1px solid rgba(var(--accent), 42%);
+		border-radius: 8px;
+		color: rgb(var(--black));
+		font: 1rem/1.4 var(--font-atkinson);
+		outline: none;
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 4%);
+	}
+	.search-field input::placeholder {
+		color: rgba(var(--gray), 78%);
+	}
+	.search-field input:focus {
+		border-color: rgb(var(--accent));
+		box-shadow:
+			0 0 0 3px rgba(var(--accent), 18%),
+			inset 0 0 0 1px rgba(255, 255, 255, 6%);
+	}
+	.post-list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	.post-list li[hidden],
+	.empty-state[hidden] {
+		display: none;
+	}
+	.post-list a {
+		display: block;
+		height: 100%;
+		padding: 1rem;
+		background: rgba(24, 24, 24, 82%);
+		border: 1px solid rgba(var(--accent), 22%);
+		border-radius: 8px;
+		color: rgb(var(--gray-dark));
+		text-decoration: none;
+		transition:
+			border-color 160ms ease,
+			background 160ms ease,
+			transform 160ms ease;
+	}
+	.post-list a:hover {
+		background: rgba(35, 30, 24, 88%);
+		border-color: rgba(var(--accent), 60%);
+		transform: translateY(-2px);
+	}
+	.post-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		align-items: center;
+		margin-bottom: 0.65rem;
+		color: rgb(var(--gray));
+		font-family: var(--font-pixel);
+		font-size: 0.68rem;
+		letter-spacing: 0;
+	}
+	.post-list h2 {
+		margin: 0 0 0.65rem;
+		font-size: clamp(1.25rem, 3vw, 1.7rem);
+	}
+	.post-list p {
+		margin: 0;
+		color: rgb(var(--gray-dark));
+	}
+	.empty-state {
+		margin: 1rem 0 0;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+	@media (max-width: 720px) {
+		.post-list {
+			grid-template-columns: 1fr;
+		}
+		.post-directory {
+			width: min(100%, calc(100vw - 1rem));
+			padding: 1rem;
+		}
+	}
+</style>
