@@ -38,7 +38,7 @@ const { heading = '', eyebrow = 'Strings Attached', posts } = Astro.props;
 				>
 					<a href={`/blog/${post.id}/`}>
 						<div class="post-meta">
-							<span>Documentation</span>
+							<span>{post.data.category ?? 'Documentation'}</span>
 							<span aria-hidden="true">/</span>
 							<FormattedDate date={post.data.pubDate} />
 						</div>
