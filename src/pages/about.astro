@@ -6,9 +6,12 @@ import Header from '../components/Header.astro';
 import PostDirectory from '../components/PostDirectory.astro';
 import { SITE_DESCRIPTION } from '../consts';
 
-const posts = (await getCollection('blog')).sort(
+const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// ONLY SHOW MUSIC EDUCATION POSTS
+const musicPosts = allPosts.filter(post => post.data.category === 'Music Education');
 ---
 
 <!doctype html>
@@ -19,7 +22,7 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
-			<PostDirectory heading="" posts={posts} />
+			<PostDirectory heading="Music Education" posts={musicPosts} />
 		</main>
 		<Footer />
 	</body>
