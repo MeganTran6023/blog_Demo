@@ -2,7 +2,7 @@
 title: 'Bow Hand Mechanics'
 description: 'The Process of Programming Bowing Hand Motions'
 pubDate: 'May 29 2026'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/blog_post2.png'
 category: 'Programming'
 ---
 
@@ -18,7 +18,11 @@ My computer told me otherwise.
 
 Implementation: 
 
-1) Allow user to curl up fingers and swipe hand right anywhere on the camera screen
+1) Core communication protocol
+
+(insert about sending byte messages here)
+
+2) Allow user to curl up fingers and swipe hand right anywhere on the camera screen
 
 From this, I tracked the fingertips and their position in space by marking them with blue dots. If at least one of those dots moved from one starting x- position to a differenet x-position in a line under a certain duration, it is considered as a right-swipe. 
 
@@ -52,6 +56,12 @@ Improvement: Prevent logic errors between "jump" and "right attack" from hand mo
 Problem: Users were not properly positioning their hands as intended.
 
 The game's functionality made complete sense to me since I am the one making it. But when having other people try out a demo version of my game, their interpretations of "jump" and "Right Attack" varied. The main theme was that everyone moved their hand in various (and sometimes bizarre) ways. This made me realize that I had to be strict about defining how each fingertip should be positioned during different stages of the hand movement for the respective character action.
+
+#### b) Jump timer
+
+(GIF video)
+
+After triggering the finger motions for "jump", a red transparent layer shows below the jump line for some period of time before disappearing. This prevents multiple hand motions from triggering multiple actions concurrently to reuslt in a buggy output in the character's motions. No problems from adding this feature observed.
 
 ## Version 3 (Current)
 
