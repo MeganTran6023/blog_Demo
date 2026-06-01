@@ -2,7 +2,7 @@
 title: 'What Experiences Inspired my Game?'
 description: 'How my internship, research project, and love of violin came together to inspire a video game.'
 pubDate: 'May 25 2026'
-heroImage: '../../assets/blog-placeholder-3.jpg'
+heroImage: '../../assets/post_1.png'
 category: 'Music Education'
 ---
 
