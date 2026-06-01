@@ -22,15 +22,15 @@ Implementation:
 
 From this, I tracked the fingertips and their position in space by marking them with blue dots. If at least one of those dots moved from one starting x- position to a differenet x-position in a line under a certain duration, it is considered as a right-swipe. 
 
-Same pattern applied for the jump. If at least one of those dots moved from one lower starting y- position to a differenet, higher y-position in a line under a certain duration, it is considered as a jump. 
+Same pattern applied for the jump. If at least one of those dots moved from one lower starting y- position to a different, higher y-position in a line under a certain duration, it is considered as a jump. 
 
 Problem: Game Engine confused between character actions.
 
-a) Lack fo Boundaries in Physical Space
+#### a) Lack fo Boundaries in Physical Space
 
 The python script in charge to identifying whether a hand motion was a right swipe or if the fingers were curling up could not discern between the two. This results in a logic error.
 
-b) No Cool-Down for Jumps
+#### b) No Cool-Down for Jumps
 
 If a jump is triggered, the opencv server I made in the python script processess other inputs after the jump. What this means is that while the character is mid-jump, it can also trigger the character to do additional actions such as attack in mid air which is not what it should do. 
 
@@ -39,9 +39,19 @@ If a jump is triggered, the opencv server I made in the python script processess
 
 Feature: **The Jump Line** and **Jump Timer**
 
-Improvement: Prevent race conditions between "jump" and "right attack" from hand motions.
+Improvement: Prevent logic errors between "jump" and "right attack" from hand motions. Now this allows each command to be distinct from each other.
 
+#### a) Jump Line
+
+(insert image)
+
+"Jump" - triggered by raise fingertips starting below the line to some spot above the line.
+
+"Right Attack" - triggered by moving fingertips to the right below the line under a certain amount of time. This timing prevents unintentional hand movements to trigger a "right attack".
+ 
 Problem: Users were not properly positioning their hands as intended.
+
+The game's functionality made complete sense to me since I am the one making it. But when having other people try out a demo version of my game, their interpretations of "jump" and "Right Attack" varied. The main theme was that everyone moved their hand in various (and sometimes bizarre) ways. This made me realize that I had to be strict about defining how each fingertip should be positioned during different stages of the hand movement for the respective character action.
 
 ## Version 3 (Current)
 
