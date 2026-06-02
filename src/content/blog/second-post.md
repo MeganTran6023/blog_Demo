@@ -55,7 +55,7 @@ Improvement: Prevent logic errors between "jump" and "right attack" from hand mo
  
 Problem: Users were not properly positioning their hands as intended.
 
-The game's functionality made complete sense to me since I am the one making it. But when having other people try out a demo version of my game, their interpretations of "jump" and "Right Attack" varied. The main theme was that everyone moved their hand in various (and sometimes bizarre) ways. This made me realize that I had to be strict about defining how each fingertip should be positioned during different stages of the hand movement for the respective character action.
+The game's functionality made complete sense to me since I am the one making it. But when having other people try out a demo version of my game, their interpretations of carrying out the motion for "jump" varied. The main theme was that everyone moved their hand in various (and sometimes bizarre) ways. This made me realize that I had to be strict about defining how each fingertip should be positioned during different stages of the hand movement for the respective character action.
 
 #### b) Jump timer
 
@@ -67,4 +67,17 @@ After triggering the finger motions for "jump", a red transparent layer shows be
 
 Feature: **Multiple Mediapipe landmark checks**
 
-Improvement: Safeguards pertaining to finger positioning to ensure proper bow hand mechanics
+Improvement: Two Safeguards pertaining to finger positioning to ensure proper bow hand mechanics
+
+### Hand-to-Wrist Proximity
+* Index knuckle (landmark 10), middle knuckle (landmark 11), or ring fingertip (landmark 12) must appear above the horizontal jump line during the raising part of the full hand motion.
+
+### Gesture Alignment and Consistency
+* Index knuckle (landmark 10), middle knuckle (landmark 11), or ring fingertip (landmark 12) must be in line with each other throughout the whole finger raise motion to trigger "jump". This ensures users focus on the hand-wrist motions instead of moving with their whole arm.
+
+### Extension Thresholds
+* The distance between the ring fingertip (12) and the base of the thumb/wrist area (1) must be at least some minimum value. This prevents allowing a closed/collapsed hand from satisfying the reset as the hand must be in a relaxed, partially open form (resembling that as holding a violin bow).
+
+### Distance Monitoring
+* The system calculates the physical pixel distance between the ring fingertip (12) and the ring finger knuckle (9). This prevents allowing a closed/collapsed hand from satisfying the reset as the hand must be in a relaxed, partially open form (resembling that as holding a violin bow).
+
