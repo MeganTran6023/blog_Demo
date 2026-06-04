@@ -16,11 +16,36 @@ My computer told me otherwise.
 
 ## Version 1
 
-Implementation: 
+1) Core Architecture
 
-1) Core communication protocol
+```text
 
-(insert about sending byte messages here)
+[ STEP 1: OpenCV/MediaPipe ] 
+       Captures Camera Frame 
+                 │
+                 ▼
+       Checks Rules & Thresholds
+                 │
+                 ▼
+ [ STEP 2: Network Sender (opencv.py) ]
+       Fires UDP Packet (e.g., b"jump") ───► Local Computer Network (Port 5005)
+                                                             │
+ ┌───────────────────────────────────────────────────────────┘
+ │
+ ▼
+ [ STEP 3: Background Listener (UDPcomm.py) ]
+       Runs continuously on a background thread
+       Catches the packet ──► Appends Timestamp to Deque Queue (e.g., jump_events)
+                                                             │
+ ┌───────────────────────────────────────────────────────────┘
+ │
+ ▼
+ [ STEP 4: Game Execution (main.py) ]
+       Main Loop ticks every frame ───► Checks if queue has an event
+                                                    │
+                                                    ▼
+                                      Triggers character animation!
+```
 
 2) Allow user to curl up fingers and swipe hand right anywhere on the camera screen
 
