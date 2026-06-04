@@ -47,6 +47,10 @@ My computer told me otherwise.
                                       Triggers character animation!
 ```
 
+### Example Use Case
+
+(insert text)
+
 2) Allow user to curl up fingers and swipe hand right anywhere on the camera screen
 
 From this, I tracked the fingertips and their position in space by marking them with blue dots. If at least one of those dots moved from one starting x- position to a differenet x-position in a line under a certain duration, it is considered as a right-swipe. 
@@ -105,4 +109,7 @@ Improvement: Two Safeguards pertaining to finger positioning to ensure proper bo
 
 ### Distance Monitoring
 * The system calculates the physical pixel distance between the ring fingertip (12) and the ring finger knuckle (9). This prevents allowing a closed/collapsed hand from satisfying the reset as the hand must be in a relaxed, partially open form (resembling that as holding a violin bow).
+
+### Proper Arm Positioning
+* For "right attack" to trigger, the elbow must be present on the screen. This is to encourage proper bowing posture as students tend to drop their arm when bowing.
 
