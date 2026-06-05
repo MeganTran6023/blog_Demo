@@ -77,7 +77,7 @@ Same pattern applied for the jump. If at least one of those dots moved from one 
 
 Problem: Game Engine confused between character actions.
 
-#### a) Lack fo Boundaries in Physical Space
+#### a) Lack of Boundaries in Physical Space
 
 The python script in charge to identifying whether a hand motion was a right swipe or if the fingers were curling up could not discern between the two. This results in a logic error.
 
