@@ -6,6 +6,10 @@ heroImage: '../../assets/blog_post2.png'
 category: 'Programming'
 ---
 
+This post is to show the journey of creating the hand - motion tracking feature for my game.
+
+## Version 1
+
 I thought this would be a straightforward process. Only two simple motions:
 
 * Bowing right means moving your hand to the right (right swipe). This triggers the orange character to attack right.
@@ -13,8 +17,6 @@ I thought this would be a straightforward process. Only two simple motions:
 * Raising your fingers means curling up your fingers. Orange character jumps.
 
 My computer told me otherwise.
-
-## Version 1
 
 1) Core Architecture
 
@@ -40,7 +42,7 @@ My computer told me otherwise.
  ┌───────────────────────────────────────────────────────────┘
  │
  ▼
- [ STEP 4: Game Execution (main.py) ]
+ [ STEP 4: Game Execution ]
        Main Loop ticks every frame ───► Checks if queue has an event
                                                     │
                                                     ▼
@@ -49,7 +51,23 @@ My computer told me otherwise.
 
 ### Example Use Case
 
-(insert text)
+Step 1
+* User moves their hand to the right
+* OpenCV detects the movement as "right swipe" per rules/thresholds.
+
+Step 2
+* Window with OpenCV screen packs the identified right swipe action into a network packet labelled with text data b"right attack".
+* Packet gets sent across the computer network over some port number (ex. port 5005).
+
+Step 3
+* The listener catches the b"right attack" packet the moment it arrives. 
+* It notes the exact time you did it and adds that timestamp into a Deque Queue.
+
+Step 4
+* Main program checks the Deque Queue and extracts the right attack event. From there, it carries out the respective function for the orange character to do the right attack.
+
+
+
 
 2) Allow user to curl up fingers and swipe hand right anywhere on the camera screen
 
@@ -76,8 +94,6 @@ Improvement: Prevent logic errors between "jump" and "right attack" from hand mo
 
 #### a) Jump Line
 
-(insert image)
-
 "Jump" - triggered by raise fingertips starting below the line to some spot above the line.
 
 "Right Attack" - triggered by moving fingertips to the right below the line under a certain amount of time. This timing prevents unintentional hand movements to trigger a "right attack".
@@ -88,7 +104,6 @@ The game's functionality made complete sense to me since I am the one making it.
 
 #### b) Jump timer
 
-(GIF video)
 
 After triggering the finger motions for "jump", a red transparent layer shows below the jump line for some period of time before disappearing. This prevents multiple hand motions from triggering multiple actions concurrently to reuslt in a buggy output in the character's motions. No problems from adding this feature observed.
 
