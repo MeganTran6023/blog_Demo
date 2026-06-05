@@ -27,13 +27,13 @@ My computer told me otherwise.
        Checks Rules & Thresholds
                  │
                  ▼
- [ STEP 2: Network Sender (opencv.py) ]
+ [ STEP 2: Network Sender ]
        Fires UDP Packet (e.g., b"jump") ───► Local Computer Network (Port 5005)
                                                              │
  ┌───────────────────────────────────────────────────────────┘
  │
  ▼
- [ STEP 3: Background Listener (UDPcomm.py) ]
+ [ STEP 3: Background Listener ]
        Runs continuously on a background thread
        Catches the packet ──► Appends Timestamp to Deque Queue (e.g., jump_events)
                                                              │
