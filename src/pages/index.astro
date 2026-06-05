@@ -1,29 +1,278 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import PostDirectory from '../components/PostDirectory.astro';
-import { SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+// Import the specific placeholder screenshots for the LinkedIn posts
+import linkedin1 from '../assets/linkedin1.png';
+import linkedin2 from '../assets/linkedin2.png';
 
 const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// home page
-// ONLY SHOW Programming POSTS
-const musicPosts = allPosts.filter(post => post.data.category === 'Programming');
+const featuredPosts = allPosts.slice(0, 2);
+const programmingPost = allPosts.find((post) => post.data.category === 'Programming');
+const musicEducationPost = allPosts.find((post) => post.data.category === 'Music Education');
+
+const categoryCards = [
+	{
+		title: 'Programming',
+		href: '/blog',
+		image: programmingPost?.data.heroImage,
+		description: programmingPost?.data.description ?? 'Programming process notes and feature breakdowns.',
+	},
+	{
+		title: 'Music Education',
+		href: '/about',
+		image: musicEducationPost?.data.heroImage,
+		description: musicEducationPost?.data.description ?? 'Music education ideas behind Strings Attached.',
+	},
+];
+
+const linkedinLinks = [
+	"https://www.linkedin.com/feed/update/urn:li:activity:7405044908656570368/",
+	"https://www.linkedin.com/feed/update/urn:li:activity:7457924907667111936/"
+];
+
+// Array mapping the index of the LinkedIn posts to their respective images
+const linkedinImages = [linkedin1, linkedin2];
+
+// Hardcoded titles and descriptions as seen on the LinkedIn posts
+const linkedinContent = [
+	{
+		title: "Bow Hand Mechanics",
+		description: "The Process of Programming Bowing Hand Motions"
+	},
+	{
+		title: "What Experiences Inspired my Game?",
+		description: "How my internship, research project, and love of violin came together to inspire a video game."
+	}
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title="Programming" description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.home-main {
+				width: min(980px, calc(100vw - 2rem));
+				max-width: none;
+				padding: clamp(1.25rem, 4vw, 3rem) 0 4rem;
+			}
+			.home-shell {
+				display: grid;
+				gap: clamp(1.5rem, 4vw, 2.5rem);
+			}
+			.linkedin-board,
+			.blog-board {
+				background: rgba(9, 9, 9, 78%);
+				border: 1px solid rgba(var(--accent), 30%);
+				border-radius: 8px;
+				box-shadow: var(--box-shadow);
+				backdrop-filter: blur(5px);
+			}
+			.linkedin-board {
+				padding: clamp(1.25rem, 4vw, 2rem);
+			}
+			.section-title {
+				margin: 0 0 1.25rem;
+				color: rgb(var(--black));
+				font-family: var(--font-pixel);
+				font-size: clamp(1.5rem, 5vw, 2.4rem);
+				letter-spacing: 0;
+				text-align: center;
+				text-shadow: 0 0 14px rgba(var(--accent), 32%);
+			}
+			.featured-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.25rem;
+			}
+			.featured-card,
+			.category-card {
+				display: block;
+				overflow: hidden;
+				background: rgba(24, 24, 24, 84%);
+				border: 1px solid rgba(var(--accent), 24%);
+				border-radius: 8px;
+				color: rgb(var(--gray-dark));
+				text-decoration: none;
+				transition:
+					border-color 160ms ease,
+					background 160ms ease,
+					transform 160ms ease;
+			}
+			.featured-card:hover,
+			.category-card:hover {
+				background: rgba(35, 30, 24, 90%);
+				border-color: rgba(var(--accent), 62%);
+				transform: translateY(-2px);
+			}
+			.featured-image,
+			.category-image {
+				position: relative;
+				background: rgba(0, 0, 0, 55%);
+			}
+			.featured-image {
+				aspect-ratio: 16 / 9;
+			}
+			.category-image {
+				aspect-ratio: 16 / 9;
+			}
+			.featured-image img,
+			.category-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 0;
+			}
+			
+			/* Video Play Button Overlay */
+			.video-play-btn {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 52px;
+				height: 52px;
+				background: rgba(0, 0, 0, 75%);
+				border: 2px solid rgba(var(--accent), 80%);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 160ms ease, transform 160ms ease;
+				pointer-events: none;
+			}
+			.video-play-btn::after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 9px 0 9px 15px;
+				border-color: transparent transparent transparent rgb(var(--accent));
+				margin-left: 4px;
+			}
+			.featured-card:hover .video-play-btn {
+				background: rgba(var(--accent), 20%);
+				transform: translate(-50%, -50%) scale(1.08);
+			}
+
+			.featured-content,
+			.category-content {
+				padding: 1rem;
+			}
+			.post-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.45rem;
+				align-items: center;
+				margin-bottom: 0.6rem;
+				color: rgb(var(--gray));
+				font-family: var(--font-pixel);
+				font-size: 0.68rem;
+				letter-spacing: 0;
+			}
+			.featured-card h2,
+			.category-card h2 {
+				margin: 0 0 0.55rem;
+				font-size: clamp(1.2rem, 3vw, 1.55rem);
+			}
+			.featured-card p,
+			.category-card p {
+				margin: 0;
+				color: rgb(var(--gray-dark));
+			}
+			.blog-board {
+				position: relative;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.25rem;
+				padding: clamp(1.25rem, 4vw, 2rem);
+			}
+			.blog-label {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				padding: 0 1rem;
+				background: #0c0c0c;
+				color: rgb(var(--black));
+				font-family: var(--font-pixel);
+				font-size: clamp(1.4rem, 5vw, 2.2rem);
+				letter-spacing: 0;
+				line-height: 1;
+				transform: translate(-50%, -50%);
+			}
+			@media (max-width: 720px) {
+				.featured-grid,
+				.blog-board {
+					grid-template-columns: 1fr;
+				}
+				.blog-board {
+					padding-top: 2rem;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<PostDirectory heading="Programming" posts={musicPosts} />
+		<main class="home-main">
+			<div class="home-shell">
+				<section class="linkedin-board" aria-labelledby="linkedin-heading">
+<h1 id="linkedin-heading" class="section-title">LinkedIn</h1>
+					<div class="featured-grid">
+						<!-- First Post (Left) -->
+						<a class="featured-card" href={linkedinLinks[0]} target="_blank" rel="noopener noreferrer">
+							<div class="featured-image">
+								<Image width={480} height={270} src={linkedinImages[0]} alt="" />
+								<div class="video-play-btn" aria-hidden="true"></div>
+							</div>
+							<div class="featured-content">
+								<h2>Post 1 - Debut</h2>
+								<p>Demo of gamifying bowing mechanics.</p>
+							</div>
+						</a>
+
+						<!-- Second Post (Right) -->
+						<a class="featured-card" href={linkedinLinks[1]} target="_blank" rel="noopener noreferrer">
+							<div class="featured-image">
+								<Image width={480} height={270} src={linkedinImages[1]} alt="" />
+								<div class="video-play-btn" aria-hidden="true"></div>
+							</div>
+							<div class="featured-content">
+								<h2>Post 2 - Bow to the Beat</h2>
+								<p>Demo of learning bowing mechanics to the beat of a rhythm.</p>
+							</div>
+						</a>
+					</div>
+				</section>
+
+				<section class="blog-board" aria-labelledby="blog-heading">
+					<h2 id="blog-heading" class="blog-label">Blog</h2>
+					{
+						categoryCards.map((card) => (
+							<a class="category-card" href={card.href}>
+								{card.image && (
+									<div class="category-image">
+										<Image width={480} height={270} src={card.image} alt="" />
+									</div>
+								)}
+								<div class="category-content">
+									<h2>{card.title}</h2>
+									<p>{card.description}</p>
+								</div>
+							</a>
+						))
+					}
+				</section>
+			</div>
 		</main>
 		<Footer />
 	</body>
