@@ -1,8 +1,9 @@
 ---
-title: 'Third post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 22 2022'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+title: 'Object Oriented Programming - Abstract Base Classes'
+description: 'My Explanation of how I applied Abstract Base Classes when programming my characters'
+pubDate: 'Jun 9 2026'
+heroImage: '../../assets/post_3_blog.png'
+category: 'Programming'
 ---
 
 
