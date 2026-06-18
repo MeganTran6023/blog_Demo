@@ -26,7 +26,11 @@ That was when I decided to turn a boring exercise to an adventure game.
 
 From Ju and Wagner's [study](https://dl.acm.org/doi/abs/10.1145/264701.264707), these were the reasons why-
 
+* role-playing
 * the story
 * the plot
 * speed of story's progression
-* role-playing
+
+<b>Role Playing</b>
+
+By taking on the role of some other fictional character, they take on the challenges that character faces in the game world. Here, the players use abilities that do not exist in the real-world to problem-solve their way out. In a sense, players escape reality to be in a alternate world for entertainment.
