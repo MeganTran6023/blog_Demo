@@ -34,3 +34,7 @@ From Ju and Wagner's [study](https://dl.acm.org/doi/abs/10.1145/264701.264707), 
 <b>Role Playing</b>
 
 By taking on the role of some other fictional character, they take on the challenges that character faces in the game world. Here, the players use abilities that do not exist in the real-world to problem-solve their way out. In a sense, players escape reality to be in a alternate world for entertainment.
+
+<b>Story + Plot</b>
+
+People love to hear factual information formatted as an organized entity with a clear start, middle, and end. Interestingly, a [study](https://www.researchgate.net/publication/319052410_The_Best-Loved_Story_of_All_Time_Overcoming_All_Obstacles_to_Be_Reunited_Evoking_Kama_Muta) from A. Fiske et al. found that stories where heroes overcome a series of challenges to reunite with something/someone. Players also reported that fast-paced stories are better than slower ones.
