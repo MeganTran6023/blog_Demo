@@ -40,8 +40,6 @@ By taking on the role of some other fictional character, they take on the challe
 
 People love to hear factual information formatted as an organized entity with a clear start, middle, and end. Interestingly, a [study](https://www.researchgate.net/publication/319052410_The_Best-Loved_Story_of_All_Time_Overcoming_All_Obstacles_to_Be_Reunited_Evoking_Kama_Muta) from A. Fiske et al. found that stories where heroes overcome a series of challenges to reunite with something/someone. Players also reported that fast-paced stories are better than slower ones.
 
-<u>a) What makes people want to keep playing rhythm-based games? </u>
-
 
 
 ## Applying Gamification into My Program
