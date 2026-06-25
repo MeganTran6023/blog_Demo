@@ -8,7 +8,8 @@ category: 'Music Education'
 
 # Sections
 1) [Backstory](#backstory)
-2) [Studies Behind Adventure Games](#studies-behind-adventure-games)
+2) [Studies Behind Adventure Games](#studies-behind-games)
+3) [Applying Gamification into My Program](#applying-gamification-into-my-program)
 
 ## Backstory
 
@@ -20,7 +21,7 @@ You know when you were in grade school, it was going to be a fun day when a teac
 
 That was when I decided to turn a boring exercise to an adventure game.
 
-## Studies Behind Adventure Games 
+## Studies Behind Games
 
 <u>a) What makes people want to keep playing adventure games? </u>
 
@@ -38,3 +39,24 @@ By taking on the role of some other fictional character, they take on the challe
 <b>Story + Plot</b>
 
 People love to hear factual information formatted as an organized entity with a clear start, middle, and end. Interestingly, a [study](https://www.researchgate.net/publication/319052410_The_Best-Loved_Story_of_All_Time_Overcoming_All_Obstacles_to_Be_Reunited_Evoking_Kama_Muta) from A. Fiske et al. found that stories where heroes overcome a series of challenges to reunite with something/someone. Players also reported that fast-paced stories are better than slower ones.
+
+<u>a) What makes people want to keep playing rhythm-based games? </u>
+
+
+
+## Applying Gamification into My Program
+
+To keep the users (in this case, grade school music students), I included the following with the respective explanations:
+
+* Simple Storyline
+
+Everyone is familiar with the plot where the hero is separated from their companion because of some antagonist and has to go through a series of missions. The goal is clear - reunite with what was taken away from them.
+
+* Rhythm-based Musical Levels
+
+Moving to the beat of some tune is a natural behavior humans exhibit. Doing this enhances the experience of listening to the music and can even [improve students' sense of rhythm](https://www.tandfonline.com/doi/abs/10.1080/713752551).
+
+
+* Phyiscal Movement as Controls
+
+[Faric et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC6754685/) found that players enjoyed physical-activity games when they immersed themselves into the game. That is, when their physical movements controlled the player in the game setting. Having players use their fingers/ arm to control the main character's movements accomplishes this.
