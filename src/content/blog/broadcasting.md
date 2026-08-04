@@ -2,7 +2,7 @@
 title: 'Screen Mirroring Issues'
 description: 'Why My Game Did Not Process Hand Motions when Broadcasted to TV Screens'
 pubDate: 'Aug 3 2026'
-heroImage: ''
+heroImage: '../../assets/blog_post4.png'
 category: 'Programming'
 ---
 
