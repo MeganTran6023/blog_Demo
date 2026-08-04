@@ -13,7 +13,11 @@ One of the researchers I collaborated with on a project was demoing out my game 
 First, let me explain this using every day scenarios. 
 
 ### Non - Technical Explanation
-Imagine a professor who has a mountain of tasks to finish, such as research projects, teaching, and writing grants. Suddenly, they get a brand-new interruption, like needing to answer an urgent student email. However, they are already on a strict deadline to complete a major grant due very soon. Because they are completely overworked, they can only handle so much at once and something has to give.
+Here is the revised non-technical explanation:
+
+Imagine you have a tiny, highly detailed postage stamp illustration of a full-sized car, and you try to print it out on a giant billboard.
+
+Because the printer's dots (or the billboard's "pixels") are massive compared to the tiny details on your stamp, the printer can't see the fine lines of the door handle or the rearview mirror. Those tiny details are smaller than a single dot on the billboard, so the printer just leaves you with a blurry, missing chunk of the car.
 
 ### Technical Explanation
-The program running my game operates on a single execution thread. On that exact same thread, the computer is simultaneously trying to support the screen mirroring component being implemented. This heavy lifting steals vital CPU cycles away from my application. As a result, the screen mirroring to the TV works, but the initialization of the camera used to process hand motions fails.
+The program running my game relies on consistent layout rendering and data mapping. When broadcasting to the TV, a display pixel mismatch occurs because the pixel layout and dimensions on the TV are larger or scaled differently than the laptop's native display. Consequently, the hardware covers or stretches the data built into the game window. The pixels on the TV appear too large or misaligned, meaning the processing pipeline only receives small, fragmented pieces of data and ignores them, resulting in a failure to process the camera and hand motion feeds due to insufficient data.
