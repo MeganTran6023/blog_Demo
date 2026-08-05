@@ -13,7 +13,6 @@ One of the researchers I collaborated with on a project was demoing out my game 
 First, let me explain this using every day scenarios. 
 
 ### Non - Technical Explanation
-Here is the revised non-technical explanation:
 
 Imagine you have a tiny, highly detailed postage stamp illustration of a full-sized car, and you try to print it out on a giant billboard.
 
